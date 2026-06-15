@@ -11,7 +11,7 @@ pipeline {
 
         stage('Deploy Firebase') {
             steps {
-                bat 'firebase deploy --non-interactive'
+                bat 'firebase deploy --project todo-app-53239 --non-interactive'
             }
         }
     }
