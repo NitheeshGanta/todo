@@ -2,24 +2,16 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building Website'
+                git 'https://github.com/NitheeshGanta/todo.git'
             }
         }
 
-        stage('Test') {
+        stage('Deploy Firebase') {
             steps {
-                echo 'Testing Website'
+                bat 'firebase deploy --non-interactive'
             }
         }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying Website'
-            }
-        }
-
     }
 }
