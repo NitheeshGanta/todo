@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+
+        stage('Build') {
             steps {
-                git 'https://github.com/NitheeshGanta/todo.git'
+                echo 'Building...'
             }
         }
 
