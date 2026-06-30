@@ -12,7 +12,11 @@ pipeline {
                 echo 'Building...'
             }
         }
-
+    stage('Check Firebase') {
+            steps {
+                bat 'firebase projects:list'
+            }
+    }
         stage('Deploy Firebase') {
             steps {
                 bat '''
