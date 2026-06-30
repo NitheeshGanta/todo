@@ -9,15 +9,11 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building...'
+                echo 'Building To-Do Application...'
             }
         }
-    stage('Check Firebase') {
-            steps {
-                bat 'firebase projects:list'
-            }
-    }
-        stage('Deploy Firebase') {
+
+        stage('Deploy to Firebase') {
             steps {
                 bat '''
                 firebase deploy ^
@@ -25,6 +21,15 @@ pipeline {
                 --token %FIREBASE_TOKEN%
                 '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment to Firebase completed successfully!'
+        }
+        failure {
+            echo 'Deployment failed. Check the console output.'
         }
     }
 }
