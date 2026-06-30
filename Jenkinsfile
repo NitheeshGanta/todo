@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        FIREBASE_TOKEN = credentials('FIREBASE_TOKEN')
+    }
+
     stages {
 
         stage('Build') {
@@ -11,7 +15,11 @@ pipeline {
 
         stage('Deploy Firebase') {
             steps {
-                bat 'firebase deploy --project todo-app-53239 --non-interactive'
+                bat '''
+                firebase deploy ^
+                --project todo-app-53239 ^
+                --token %FIREBASE_TOKEN%
+                '''
             }
         }
     }
